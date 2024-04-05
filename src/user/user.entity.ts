@@ -1,6 +1,15 @@
-import {BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
+import {
+    BeforeInsert,
+    Column,
+    CreateDateColumn,
+    Entity,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from "typeorm";
 import * as bcrypt from 'bcrypt';
 import {Exclude} from "class-transformer";
+import {ArticleEntity} from "../article/article.entity";
 @Entity('users')
 export class User {
     @PrimaryGeneratedColumn()
@@ -17,7 +26,11 @@ export class User {
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()
-    updated_ad: Date;
+    updated_at: Date;
+
+
+    @OneToMany(()=>ArticleEntity, (articleEntity: ArticleEntity)=>articleEntity.user)
+    articles:ArticleEntity[];
 
     @BeforeInsert()
     async hashPassword() {
