@@ -3,16 +3,16 @@ import {
     CreateDateColumn,
     Entity,
     JoinColumn,
-    ManyToOne,
+    ManyToOne, OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from "typeorm";
 import {User} from "../user/user.entity";
 import {UserService} from "../user/user.service";
-import {SubEntity} from "../sub/sub.entity";
+import {ArticleEntity} from "../article/article.entity";
 
-@Entity('articles')
-export class ArticleEntity {
+@Entity('subs')
+export class SubEntity {
     @PrimaryGeneratedColumn()
     id: number;
     @Column()
@@ -26,7 +26,6 @@ export class ArticleEntity {
     @JoinColumn({name:'user_id'})
     user:User;
 
-    @ManyToOne(()=>SubEntity,(sub:SubEntity)=>sub.articles)
-    @JoinColumn({name:'sub_id'})
-    sub:SubEntity;
+    @OneToMany(()=>ArticleEntity, (articleEntity: ArticleEntity)=>articleEntity.sub)
+    articles:ArticleEntity[];
 }

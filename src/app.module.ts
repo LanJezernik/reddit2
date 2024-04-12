@@ -5,6 +5,8 @@ import { UserModule } from './user/user.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import { ArticleModule } from './article/article.module';
 import {ConfigModule} from "@nestjs/config";
+import { SubModule } from './sub/sub.module';
+import { ServiceModule } from './service/service.module';
 
 
 @Module({
@@ -22,7 +24,9 @@ import {ConfigModule} from "@nestjs/config";
       autoLoadEntities: true,
     }),
     UserModule,
-    ArticleModule],
+    ArticleModule,
+    SubModule,
+    ServiceModule],
   controllers: [AppController],
   providers: [AppService],
 })
