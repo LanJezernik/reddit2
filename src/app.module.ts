@@ -7,6 +7,7 @@ import { ArticleModule } from './article/article.module';
 import {ConfigModule} from "@nestjs/config";
 import { SubModule } from './sub/sub.module';
 import { ServiceModule } from './service/service.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -26,7 +27,8 @@ import { ServiceModule } from './service/service.module';
     UserModule,
     ArticleModule,
     SubModule,
-    ServiceModule],
+    ServiceModule,
+    AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
